@@ -1,0 +1,38 @@
+<div style="display: flex; gap: 20px; padding: 20px;">
+  <div style="flex: 1;">
+    <table border="1" cellpadding="8" cellspacing="0" style="width: 100%; border-collapse: collapse;">
+      <thead style="background-color: #f2f2f2;">
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Channel</th>
+          <th>Seasons</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let serie of series; let i = index" (click)="onSelect(serie)" style="cursor: pointer;">
+          <td>{{ i + 1 }}</td>
+          <td><strong>{{ serie.name }}</strong></td>
+          <td>{{ serie.channel }}</td>
+          <td>{{ serie.seasons }}</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="4" style="text-align: right; font-weight: bold;">
+            Seasons average: {{ averageSeasons | number:'1.1-1' }}
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div *ngIf="selectedSeries" style="flex: 1;">
+    <h2>{{ selectedSeries.name }}</h2>
+    <img [src]="selectedSeries.poster" alt="{{ selectedSeries.name }}" style="width: 100%; border-radius: 10px;">
+    <p><strong>Channel:</strong> {{ selectedSeries.channel }}</p>
+    <p><strong>Seasons:</strong> {{ selectedSeries.seasons }}</p>
+    <p>{{ selectedSeries.description }}</p>
+    <a [href]="selectedSeries.webpage" target="_blank">Official webpage</a>
+  </div>
+</div>
